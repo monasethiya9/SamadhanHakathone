@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Marks Calculator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      width: 350px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1e3c72;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 12px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #b0c4de;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #1e90ff;
+      box-shadow: 0 0 5px rgba(30, 144, 255, 0.6);
+    }
+
+    button {
+      margin-top: 20px;
+      background: #1e90ff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #005cbf;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #f5f9ff;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Grade colors */
+    .pass {
+      color: green;
+    }
+
+    .fail {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Marks Calculator</h2>
+
+    <label>Subject 1:</label><input type="number" id="sub1" max="100" min="0">
+    <label>Subject 2:</label><input type="number" id="sub2" max="100" min="0">
+    <label>Subject 3:</label><input type="number" id="sub3" max="100" min="0">
+    <label>Subject 4:</label><input type="number" id="sub4" max="100" min="0">
+    <label>Subject 5:</label><input type="number" id="sub5" max="100" min="0">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      let s1 = parseFloat(document.getElementById("sub1").value) || 0;
+      let s2 = parseFloat(document.getElementById("sub2").value) || 0;
+      let s3 = parseFloat(document.getElementById("sub3").value) || 0;
+      let s4 = parseFloat(document.getElementById("sub4").value) || 0;
+      let s5 = parseFloat(document.getElementById("sub5").value) || 0;
+
+      let total = s1 + s2 + s3 + s4 + s5;
+      let percentage = (total / 500) * 100;
+
+      let grade;
+      let gradeClass;
+      if (percentage >= 90) {
+        grade = "A+";
+        gradeClass = "pass";
+      } else if (percentage >= 75) {
+        grade = "A";
+        gradeClass = "pass";
+      } else if (percentage >= 60) {
+        grade = "B";
+        gradeClass = "pass";
+      } else if (percentage >= 45) {
+        grade = "C";
+        gradeClass = "pass";
+      } else {
+        grade = "Fail";
+        gradeClass = "fail";
+      }
+
+      document.getElementById("result").innerHTML =
+        "Total Marks: " + total + "/500<br>" +
+        "Percentage: " + percentage.toFixed(2) + "%<br>" +
+        "Grade: <span class='" + gradeClass + "'>" + grade + "</span>";
+    }
+  </script>
+</body>
+</html>
